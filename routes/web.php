@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\CodeController;
 use App\Http\Controllers\ProfileController;
+use App\Livewire\CodeList;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,6 +18,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/codes', [CodeController::class, 'index'])->name('code');
+Route::get('/codes', CodeList::class)->name('codes');
 
 require __DIR__.'/auth.php';
