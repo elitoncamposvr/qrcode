@@ -2,25 +2,16 @@
 
 namespace App\Livewire;
 
+use App\Models\Code;
 use Livewire\Component;
 
 class CodeList extends Component
 {
 
-    public $count = 1;
-
-    public function increment()
-    {
-        $this->count++;
-    }
-
-    public function decrement()
-    {
-        $this->count--;
-    }
-
     public function render()
     {
-        return view('livewire.codelist');
+        return view('livewire.codelist',[
+            'codelist' => Code::paginate(5),
+        ]);
     }
 }
