@@ -11,7 +11,7 @@ class CodeList extends Component
     public function render()
     {
         return view('livewire.codelist',[
-            'codelist' => Code::paginate(5),
+            'codelist' => Code::paginate(10),
         ]);
     }
 }
