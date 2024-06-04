@@ -11,6 +11,12 @@
                     <x-nav-link :href="route('codes')" :active="request()->routeIs('code')">
                         {{ __('Códigos') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('registers')" :active="request()->routeIs('registers')">
+                        {{ __('Cadastros') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('users')" :active="request()->routeIs('users')">
+                        {{ __('Usuários') }}
+                    </x-nav-link>
                 </div>
             </div>
 

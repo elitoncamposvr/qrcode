@@ -42,7 +42,6 @@
                     </div>
                 @endforeach
                 {{ $codelist->links() }}
-
             </div>
         </div>
     </div>
