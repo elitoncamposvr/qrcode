@@ -3,63 +3,67 @@
 namespace App\Http\Controllers;
 
 use App\Models\CodeFamily;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class CodeFamilyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return view('code_family', [
+           'codefamily' => CodeFamily::paginate(20),
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('code_family_create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name_family' => ['required', 'string', 'max:100'],
+        ]);
+
+        $codefamily = CodeFamily::create([
+            'name_family' => $request->name_family,
+        ]);
+
+        event(new Registered($codefamily));
+
+        return redirect(route('codefamily.index', absolute: false));
+
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(CodeFamily $codeFamily)
+    public function edit($id)
     {
-        //
+        $codefamily = CodeFamily::find($id);
+        return view('code_family_edit', [
+           'codefamily' =>  $codefamily,
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(CodeFamily $codeFamily)
+    public function update(Request $request, $id)
     {
-        //
+
+        $request->validate([
+            'name_family' => ['required','string','max:100'],
+        ]);
+
+        $codefamily = CodeFamily::find($id);
+        $codefamily->update($request->all());
+
+        return Redirect::to('/codefamily');
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, CodeFamily $codeFamily)
+    public function destroy(Request $request)
     {
-        //
-    }
+        $codefamily = CodeFamily::find($request->id);
+        $codefamily->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(CodeFamily $codeFamily)
-    {
-        //
+        return Redirect::to('/codefamily');
     }
 }

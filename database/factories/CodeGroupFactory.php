@@ -17,7 +17,7 @@ class CodeGroupFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name_group' => fake()->jobTitle,
         ];
     }
 }

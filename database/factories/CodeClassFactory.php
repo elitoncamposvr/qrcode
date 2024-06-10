@@ -17,7 +17,7 @@ class CodeClassFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name_class' => fake()->jobTitle(),
         ];
     }
 }

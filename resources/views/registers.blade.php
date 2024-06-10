@@ -5,13 +5,13 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="w-full pb-1.5 inline-flex">
                         <span class="px-2">
-                            <x-link-btn :href="route('users.create')">{{ __('Classes') }}</x-link-btn>
+                            <x-link-btn :href="route('codeclass.index')">{{ __('Classes') }}</x-link-btn>
                         </span>
                         <span class="px-2">
-                            <x-link-btn :href="route('users.create')">{{ __('Família') }}</x-link-btn>
+                            <x-link-btn :href="route('codefamily.index')">{{ __('Família') }}</x-link-btn>
                         </span>
                         <span class="px-2">
-                            <x-link-btn :href="route('users.create')">{{ __('Grupo') }}</x-link-btn>
+                            <x-link-btn :href="route('codegroup.index')">{{ __('Grupo') }}</x-link-btn>
                         </span>
                     </div>
                 </div>

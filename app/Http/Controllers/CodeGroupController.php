@@ -3,63 +3,65 @@
 namespace App\Http\Controllers;
 
 use App\Models\CodeGroup;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class CodeGroupController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return view('code_group', [
+           'codegroup' => CodeGroup::paginate(20),
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
-        //
+        return view('code_group_create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name_group' => ['string', 'required', 'max:100'],
+        ]);
+
+        $codegroup = CodeGroup::create([
+            'name_group' => $request->name_group,
+        ]);
+
+        event(new Registered($codegroup));
+
+        return redirect(route('codegroup.index', absolute: false));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(CodeGroup $codeGroup)
+    public function edit($id)
     {
-        //
+        $codegroup = CodeGroup::find($id);
+        return view('code_group_edit', [
+            'codegroup' => $codegroup
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(CodeGroup $codeGroup)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name_group' => ['string', 'required', 'max:100'],
+        ]);
+
+        $codeclass = CodeGroup::find($id);
+        $codeclass->update($request->all());
+
+        return Redirect::to('/codegroup');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, CodeGroup $codeGroup)
+    public function destroy(Request $request)
     {
-        //
-    }
+        $codegroup = CodeGroup::find($request->id);
+        $codegroup->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(CodeGroup $codeGroup)
-    {
-        //
+        return Redirect::to('/codegroup');
     }
 }
