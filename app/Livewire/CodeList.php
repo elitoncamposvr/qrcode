@@ -14,4 +14,9 @@ class CodeList extends Component
             'codelist' => Code::paginate(10),
         ]);
     }
+
+    public function create()
+    {
+        return view('livewire.create');
+    }
 }

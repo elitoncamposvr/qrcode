@@ -4,62 +4,42 @@ namespace App\Http\Controllers;
 
 use App\Models\Code;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class CodeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return view('codes', [
+            'codes' => Code::paginate(20),
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('codes_create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Code $code)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Code $code)
     {
-        //
+        return view('codes_edit');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Code $code)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Code $code)
+    public function destroy(Request $request)
     {
-        //
+        $code = Code::find($request->id);
+        $code->delete();
+
+        return Redirect::to('/codes');
     }
 }

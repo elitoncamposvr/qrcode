@@ -3,7 +3,7 @@
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 text-gray-900 dark:text-gray-100">
                 <div class="w-full pb-1.5 inline-flex justify-end">
-                    <x-link-btn :href="route('dashboard')">{{ __('Novo Código') }}</x-link-btn>
+                    <x-link-btn :href="route('codes.create')">{{ __('Novo Código') }}</x-link-btn>
                 </div>
 
                 <div class="w-full inline-flex border-b py-1.5">
@@ -20,6 +20,7 @@
                         Ações
                     </div>
                 </div>
+
                 @foreach($codelist as $code)
                     <div class="w-full inline-flex border-b my-4 dark:border-b-gray-700">
                         <div class="w-3/12">

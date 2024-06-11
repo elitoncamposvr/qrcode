@@ -8,7 +8,7 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Página Inicial') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('codes')" :active="request()->routeIs('code')">
+                    <x-nav-link :href="route('codes.index')" :active="request()->routeIs('codes.index')">
                         {{ __('Códigos') }}
                     </x-nav-link>
                     <x-nav-link :href="route('registers')" :active="request()->routeIs('registers')">

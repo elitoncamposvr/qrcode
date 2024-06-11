@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\CodeClassController;
+use App\Http\Controllers\CodeController;
 use App\Http\Controllers\CodeFamilyController;
 use App\Http\Controllers\CodeGroupController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Livewire\CodeList;
+use App\Models\Code;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -22,12 +24,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/codes', CodeList::class)->name('codes');
+Route::get('/codes', [CodeController::class, 'index'])->name('codes.index');
+Route::get('/codes/create', [CodeController::class, 'create'])->name('codes.create');
+Route::post('/codes/store', [CodeController::class, 'store'])->name('codes.store');
+Route::get('/codes/edit/{$id}', [CodeController::class, 'edit'])->name('codes.edit');
+Route::put('/codes/update/{id}', [CodeController::class, 'update'])->name('codes.update');
+Route::delete('/codes/destroy', [CodeController::class, 'destroy'])->name('codes.destroy');
 
 Route::get('/registers', function () {
     return view('registers');
 })->name('registers');
-
 
 Route::get('/codeclass', [CodeClassController::class, 'index'])->name('codeclass.index');
 Route::get('/codeclass/create', [CodeClassController::class, 'create'])->name('codeclass.create');
