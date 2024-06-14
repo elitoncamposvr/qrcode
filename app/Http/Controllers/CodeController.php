@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Code;
+use App\Models\CodeClass;
+use App\Models\CodeFamily;
+use App\Models\CodeGroup;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -17,12 +21,44 @@ class CodeController extends Controller
 
     public function create()
     {
-        return view('codes_create');
+        return view('codes_create', [
+            'code_class' => CodeClass::all(),
+            'code_family' => CodeFamily::all(),
+            'code_group' => CodeGroup::all(),
+        ]);
     }
 
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'class_id' => ['required', 'integer',],
+            'family_id' => ['required', 'integer',],
+            'group_id' => ['required', 'integer',],
+            'description' => ['required', 'string', 'max:255'],
+        ]);
+
+        $code_all = $request
+                ->get('class_id') . "."
+            . $request->
+                get('family_id') . "."
+            . $request->
+                get('group_id');
+
+        $code = Code::create([
+            'code' => $code_all,
+            'designer' => $request->get('designer'),
+            'raw_code' => "5",
+            'old_code' => '6',
+            'class_id' => $request->get('class_id'),
+            'family_id' => $request->get('family_id'),
+            'group_id' => $request->get('group_id'),
+            'description' => $request->get('description'),
+        ]);
+
+        event(new Registered($code));
+
+        return \redirect(route('codes.index', absolute: false));
+
     }
 
     public function edit(Code $code)
