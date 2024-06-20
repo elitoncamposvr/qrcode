@@ -7,7 +7,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CodeClassController;
 use App\Http\Controllers\CodeGroupController;
 use App\Http\Controllers\CodeFamilyController;
-// use App\Http\Controllers\CodeGroupController;
 
 Route::get('/', function () {
     return redirect('dashboard');
