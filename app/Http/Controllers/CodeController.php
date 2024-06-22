@@ -75,6 +75,18 @@ class CodeController extends Controller
         //
     }
 
+    public function show($id)
+    {
+        return view('codes_show', [
+            'codes' => Code::find($id),
+        ]);
+    }
+
+    public function search($search)
+    {
+        return view('codes_show');
+    }
+
     public function destroy(Request $request)
     {
         $code = Code::find($request->id);
