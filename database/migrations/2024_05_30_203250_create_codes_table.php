@@ -16,9 +16,6 @@ return new class extends Migration
             $table->string('code', 20);
             $table->string('description', 50);
             $table->string('designer', 50);
-            $table->string('raw_code', 50);
-            $table->string('old_code', 50);
-            $table->timestamps();
         });
     }
 

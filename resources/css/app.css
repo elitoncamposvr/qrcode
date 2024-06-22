@@ -4,6 +4,25 @@
 
 @layer base {
     select{
-        @apply text-gray-800;
+        @apply text-gray-800 rounded-md;
     }
+
+    input[type=text]{
+        @apply text-gray-800 rounded-md;
+    }
+
+    textarea{
+        @apply text-gray-800 rounded-md resize-none w-full h-24;
+    }
+}
+
+@layer utilities {
+    .form-destroy{
+        @apply h-5;
+    }
+
+    .line-show{
+        @apply w-full flex flex-row py-1.5 mb-2 border-b border-gray-600;
+    }
+
 }

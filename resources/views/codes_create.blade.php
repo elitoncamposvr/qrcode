@@ -7,38 +7,43 @@
                         @csrf
                    <div class="w-full flex gap-3">
                        <div class="w-2/6">
+                           <label for="class_id">Classe</label>
                            <select name="class_id" id="class_id" class="w-full">
-                               <option value="0">Choose your class</option>
+                               <option value="0">Escolha sua classe</option>
                                @foreach($code_class as $class)
                                    <option value="{{ $class->id }}">{{ $class->name_class }}</option>
                                @endforeach
                            </select>
                        </div>
                        <div class="w-2/6">
+                           <label for="family_id">Família</label>
                            <select name="family_id" id="family_id" class="w-full">
-                               <option value="0">Chosse your family</option>
+                               <option value="0">Escolha familia</option>
                                @foreach($code_family as $family)
                                    <option value="{{ $family->id }}">{{ $family->name_family }}</option>
                                @endforeach
                            </select>
                        </div>
                        <div class="w-2/6">
+                           <label for="group_id">Grupo</label>
                            <select name="group_id" id="group_id" class="w-full">
-                               <option value="0">Choose your group</option>
+                               <option value="0">Escolha sua família</option>
                                @foreach($code_group as $group)
                                    <option value="{{ $group->id }}">{{ $group->name_group }}</option>
                                @endforeach
                            </select>
-                       </div>sx
+                       </div>
                    </div>
                         <div class="w-full mt-3">
-                            <input type="text" name="description" id="description" class="w-full" required>
-                        </div>
-                        <div class="w-full mt-3">
+                            <label for="designer">Projetista</label>
                             <input type="text" name="designer" id="designer" value="Eliton Campos" class="w-full">
                         </div>
                         <div class="w-full mt-3">
-                            <button type="submit">Cadastrar</button>
+                            <label for="description">Descrição</label>
+                            <textarea name="description" id="description"></textarea>
+                        </div>
+                        <div class="w-full mt-3 flex justify-center">
+                            <x-primary-button>{{ __('Cadastrar') }}</x-primary-button>
                         </div>
                     </form>
                 </div>

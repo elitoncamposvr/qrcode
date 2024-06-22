@@ -9,11 +9,11 @@ class Code extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = [
         'code',
         'designer',
-        'raw_code',
-        'old_code',
         'class_id',
         'family_id',
         'group_id',

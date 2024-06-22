@@ -20,7 +20,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+
 
 Route::get('/codes', [CodeController::class, 'index'])->name('codes.index');
 Route::get('/codes/create', [CodeController::class, 'create'])->name('codes.create');
@@ -61,4 +61,5 @@ Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('users.edi
 Route::put('/users/update/{id}', [UserController::class, 'update'])->name('users.update');
 Route::delete('/users/destroy', [UserController::class, 'destroy'])->name('users.destroy');
 
+});
 require __DIR__ . '/auth.php';

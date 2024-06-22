@@ -37,18 +37,9 @@ class CodeController extends Controller
             'description' => ['required', 'string', 'max:255'],
         ]);
 
-        $code_all = $request
-                ->get('class_id') . "."
-            . $request->
-                get('family_id') . "."
-            . $request->
-                get('group_id');
-
         $code = Code::create([
-            'code' => $code_all,
+            'code' => '0',
             'designer' => $request->get('designer'),
-            'raw_code' => "5",
-            'old_code' => '6',
             'class_id' => $request->get('class_id'),
             'family_id' => $request->get('family_id'),
             'group_id' => $request->get('group_id'),
@@ -56,6 +47,19 @@ class CodeController extends Controller
         ]);
 
         event(new Registered($code));
+
+        $code_all = $request
+                ->get('class_id') . "."
+            . $request->
+            get('family_id') . "."
+            . $request->
+            get('group_id') . "."
+            . $code->id;
+
+        $code_update = Code::find($code->id);
+        $code_update->update([
+            'code' => $code_all,
+        ]);
 
         return \redirect(route('codes.index', absolute: false));
 
