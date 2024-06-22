@@ -29,7 +29,7 @@
                                    <option value="{{ $group->id }}">{{ $group->name_group }}</option>
                                @endforeach
                            </select>
-                       </div>
+                       </div>sx
                    </div>
                         <div class="w-full mt-3">
                             <input type="text" name="description" id="description" class="w-full" required>
