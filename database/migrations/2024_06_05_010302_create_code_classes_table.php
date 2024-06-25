@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('code_classes', function (Blueprint $table) {
             $table->id();
             $table->string('name_class');
-            $table->integer('is_active')->default('1');
             $table->timestamps();
         });
     }

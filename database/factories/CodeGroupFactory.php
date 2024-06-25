@@ -18,6 +18,7 @@ class CodeGroupFactory extends Factory
     {
         return [
             'name_group' => fake()->jobTitle,
+            'group_code' => fake()->unique()->randomNumber('2'),
         ];
     }
 }

@@ -23,7 +23,7 @@
                         @foreach($codegroup as $code)
                             <div class="w-full inline-flex border-b my-4 dark:border-b-gray-700">
                                 <div class="w-1/6">
-                                    {{ $code->id }}
+                                    {{ $code->group_code }}
                                 </div>
                                 <div class="w-4/6">
                                     {{ $code->name_group }}

@@ -10,6 +10,7 @@ class CodeFamily extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name_family'
+        'name_family',
+        'families_code',
     ];
 }

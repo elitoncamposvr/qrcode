@@ -6,6 +6,7 @@ use App\Models\CodeClass;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\Rule;
 
 class CodeClassController extends Controller
 {
@@ -25,10 +26,12 @@ class CodeClassController extends Controller
     {
         $request->validate([
             'name_class' => ['required', 'string', 'max:100'],
+            'class_code' => ['required', 'integer', 'min:1', 'max:9', 'unique:code_classes'],
         ]);
 
         $codeclass = CodeClass::create([
             'name_class' => $request->name_class,
+            'class_code' => $request->class_code,
         ]);
 
         event(new Registered($codeclass));
@@ -48,6 +51,7 @@ class CodeClassController extends Controller
     {
         $request->validate([
             'name_class' => ['required', 'string', 'max:100'],
+            'class_code' => ['required', 'integer', 'min:1', 'max:9', Rule::unique('code_classes')->ignore($id)],
         ]);
 
         $codeclass = CodeClass::find($id);

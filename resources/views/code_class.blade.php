@@ -5,7 +5,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="w-full pb-1.5 flex flex-col">
                         <div class="w-full pb-1.5 inline-flex justify-end">
-                            <x-link-btn :href="route('codeclass.create')">{{ __('Nova Família') }}</x-link-btn>
+                            <x-link-btn :href="route('codeclass.create')">{{ __('Nova Classe') }}</x-link-btn>
                         </div>
 
                         <div class="w-full inline-flex border-b py-1.5">
@@ -23,7 +23,7 @@
                         @foreach($codeclass as $code)
                             <div class="w-full inline-flex border-b my-4 dark:border-b-gray-700">
                                 <div class="w-1/6">
-                                    {{ $code->id }}
+                                    {{ $code->class_code }}
                                 </div>
                                 <div class="w-4/6">
                                     {{ $code->name_class }}

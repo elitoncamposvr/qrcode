@@ -18,6 +18,7 @@ class CodeFamilyFactory extends Factory
     {
         return [
             'name_family' => fake()->jobTitle(),
+            'families_code' => fake()->unique()->randomNumber('2'),
         ];
     }
 }

@@ -18,6 +18,7 @@ class CodeClassFactory extends Factory
     {
         return [
             'name_class' => fake()->jobTitle(),
+            'class_code' => fake()->unique()->randomNumber(1),
         ];
     }
 }

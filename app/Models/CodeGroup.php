@@ -11,5 +11,6 @@ class CodeGroup extends Model
 
     protected $fillable = [
         'name_group',
+        'group_code',
     ];
 }

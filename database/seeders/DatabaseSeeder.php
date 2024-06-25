@@ -26,10 +26,10 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('123456br'),
         ]);
 
-        CodeFamily::factory()->count(15)->create();
+        CodeClass::factory()->count(8)->create();
 
-        CodeClass::factory()->count(15)->create();
+        CodeFamily::factory()->count(10)->create();
 
-        CodeGroup::factory()->count(15)->create();
+        CodeGroup::factory()->count(10)->create();
     }
 }

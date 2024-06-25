@@ -13,6 +13,12 @@
                             <x-input-error class="mt-2" :messages="$errors->get('name_family')" />
                         </div>
 
+                        <div>
+                            <x-input-label for="families_code" :value="__('Código da Família')" />
+                            <x-text-input id="families_code" name="families_code" type="text" class="mt-1 block w-full" value="{{ $codefamily->families_code }}" maxlength="2" required />
+                            <x-input-error class="mt-2" :messages="$errors->get('families_code')" />
+                        </div>
+
                         <div class="flex items-center gap-4">
                             <x-primary-button>{{ __('Salvar') }}</x-primary-button>
                         </div>

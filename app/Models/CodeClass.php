@@ -10,6 +10,7 @@ class CodeClass extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name_class'
+        'name_class',
+        'class_code',
     ];
 }

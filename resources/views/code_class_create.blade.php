@@ -13,6 +13,12 @@
                             <x-input-error class="mt-2" :messages="$errors->get('name_class')" />
                         </div>
 
+                        <div>
+                            <x-input-label for="class_code" :value="__('Código da Classe')" />
+                            <x-text-input id="class_code" name="class_code" type="text" class="mt-1 block w-full" maxlength="1" required autofocus />
+                            <x-input-error class="mt-2" :messages="$errors->get('class_code')" />
+                        </div>
+
                         <div class="flex items-center gap-4">
                             <x-primary-button>{{ __('Salvar') }}</x-primary-button>
                         </div>

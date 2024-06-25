@@ -6,6 +6,7 @@ use App\Models\CodeGroup;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\Rule;
 
 class CodeGroupController extends Controller
 {
@@ -26,10 +27,12 @@ class CodeGroupController extends Controller
     {
         $request->validate([
             'name_group' => ['string', 'required', 'max:100'],
+            'group_code' => ['integer', 'required', 'min:1', 'max:99', 'unique:code_groups'],
         ]);
 
         $codegroup = CodeGroup::create([
             'name_group' => $request->name_group,
+            'group_code' => $request->group_code,
         ]);
 
         event(new Registered($codegroup));
@@ -49,6 +52,7 @@ class CodeGroupController extends Controller
     {
         $request->validate([
             'name_group' => ['string', 'required', 'max:100'],
+            'group_code' => ['integer', 'required', 'min:1', 'max:99', Rule::unique('code_groups')->ignore($id)],
         ]);
 
         $codeclass = CodeGroup::find($id);

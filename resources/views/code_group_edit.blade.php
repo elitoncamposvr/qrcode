@@ -13,6 +13,12 @@
                             <x-input-error class="mt-2" :messages="$errors->get('name_group')" />
                         </div>
 
+                        <div>
+                            <x-input-label for="group_code" :value="__('Código do Grupo')" />
+                            <x-text-input id="group_code" name="group_code" type="text" class="mt-1 block w-full" value="{{ $codegroup->group_code }}" maxlength="2" required />
+                            <x-input-error class="mt-2" :messages="$errors->get('group_code')" />
+                        </div>
+
                         <div class="flex items-center gap-4">
                             <x-primary-button>{{ __('Salvar') }}</x-primary-button>
                         </div>
