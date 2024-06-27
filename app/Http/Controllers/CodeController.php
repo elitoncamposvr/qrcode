@@ -68,7 +68,7 @@ class CodeController extends Controller
 
     }
 
-    public function edit(Code $code)
+    public function edit($id)
     {
         return view('codes_edit');
     }
@@ -97,10 +97,6 @@ class CodeController extends Controller
 
     }
 
-    public function search($search)
-    {
-        return view('codes_search', []);
-    }
 
     public function destroy(Request $request)
     {
