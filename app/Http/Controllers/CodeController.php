@@ -91,11 +91,6 @@ class CodeController extends Controller
 
         return view('codes_show')->with('code', $codes[0]);
 
-//        dump($codes[0]);
-
-//        return view('codes_show', [
-//            'code' => Code::find($id),
-//        ]);
     }
 
     /**
@@ -112,6 +107,18 @@ class CodeController extends Controller
     public function update(Request $request, Code $code)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $results = Code::where('designer', 'like', "%$search%")
+            ->orWhere('code', 'like', "%$search%")
+            ->get();
+
+        return view('code_search', [
+            'code_results' => $results,
+        ]);
     }
 
     public function destroy(Request $request)

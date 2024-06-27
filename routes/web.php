@@ -28,6 +28,7 @@ Route::post('/codes/store', [CodeController::class, 'store'])->name('codes.store
 Route::get('/codes/edit/{id}', [CodeController::class, 'edit'])->name('codes.edit');
 Route::put('/codes/update/{id}', [CodeController::class, 'update'])->name('codes.update');
 Route::get('/codes/show/{id}', [CodeController::class, 'show'])->name('codes.show');
+Route::get('/search', [CodeController::class, 'search'])->name('codes.search');
 Route::delete('/codes/destroy', [CodeController::class, 'destroy'])->name('codes.destroy');
 
 Route::get('/registers', function () {

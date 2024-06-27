@@ -8,7 +8,9 @@
                     </div>
 
                     <div class="w-full p-2 mb-3 bg-gray-700 rounded-md">
-                        <input type="search" name="search" id="search" class="w-full" placeholder="Busca por código ou projetista">
+                        <form class="w-full" action="{{ route('codes.search') }}" method="get">
+                            <input type="search" name="search" id="search" class="w-full" placeholder="Busca por código ou projetista">
+                        </form>
                     </div>
 
                     <div class="w-full inline-flex border-b py-1.5">
