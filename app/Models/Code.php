@@ -14,9 +14,9 @@ class Code extends Model
     protected $fillable = [
         'code',
         'designer',
-        'class_id',
-        'family_id',
-        'group_id',
+        'class_code',
+        'families_code',
+        'group_code',
         'description',
     ];
 }

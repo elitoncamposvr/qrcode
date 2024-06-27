@@ -32,35 +32,37 @@ class CodeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'class_id' => ['required', 'integer',],
-            'family_id' => ['required', 'integer',],
-            'group_id' => ['required', 'integer',],
+            'class_code' => ['required', 'integer',],
+            'families_code' => ['required', 'integer',],
+            'group_code' => ['required', 'integer',],
             'description' => ['required', 'string', 'max:255'],
         ]);
 
         $code = Code::create([
             'code' => '0',
             'designer' => $request->get('designer'),
-            'class_id' => $request->get('class_id'),
-            'family_id' => $request->get('family_id'),
-            'group_id' => $request->get('group_id'),
+            'class_code' => $request->get('class_code'),
+            'families_code' => $request->get('families_code'),
+            'group_code' => $request->get('group_code'),
             'description' => $request->get('description'),
         ]);
-
+//
         event(new Registered($code));
 
         $code_all = $request
-                ->get('class_id') . "."
+                ->get('class_code') . "."
             . $request->
-            get('family_id') . "."
+            get('families_code') . "."
             . $request->
-            get('group_id') . "."
+            get('group_code') . "."
             . $code->id;
 
         $code_update = Code::find($code->id);
         $code_update->update([
             'code' => $code_all,
         ]);
+
+//        dump($code_all);
 
         return \redirect(route('codes.index', absolute: false));
 
@@ -78,16 +80,20 @@ class CodeController extends Controller
 
     public function show($id)
     {
-        $codes = DB::table('codes')
-            ->leftJoin('code_classes', 'codes.class_id', '=', 'code_classes.id')
-            ->leftJoin('code_families', 'codes.family_id', '=', 'code_families.id')
-            ->leftJoin('code_groups', 'codes.group_id', '=', 'code_groups.id')
-            ->where('codes.id', '=', $id)
-            ->get();
-
-        return view('codes_show')->with('code', $codes[0]);
+//        $codes = DB::table('codes')
+//            ->leftJoin('code_classes', 'codes.class_id', '=', 'code_classes.id')
+//            ->leftJoin('code_families', 'codes.family_id', '=', 'code_families.id')
+//            ->leftJoin('code_groups', 'codes.group_id', '=', 'code_groups.id')
+//            ->where('codes.id', '=', $id)
+//            ->get();
+//
+//        return view('codes_show')->with('code', $codes[0]);
 
 //        dump($codes[0]->code);
+
+        return view('codes_show', [
+            'code' => Code::find($id),
+        ]);
 
     }
 

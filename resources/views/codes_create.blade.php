@@ -8,28 +8,28 @@
                    <div class="w-full flex gap-3">
                        <div class="w-2/6">
                            <label for="class_id">Classe</label>
-                           <select name="class_id" id="class_id" class="w-full">
+                           <select name="class_code" id="class_code" class="w-full">
                                <option value="0">Escolha sua classe</option>
                                @foreach($code_class as $class)
-                                   <option value="{{ $class->id }}">{{ $class->name_class }}</option>
+                                   <option value="{{ $class->class_code }}">{{ $class->class_code }} - {{ $class->name_class }}</option>
                                @endforeach
                            </select>
                        </div>
                        <div class="w-2/6">
                            <label for="family_id">Família</label>
-                           <select name="family_id" id="family_id" class="w-full">
+                           <select name="families_code" id="families_code" class="w-full">
                                <option value="0">Escolha familia</option>
                                @foreach($code_family as $family)
-                                   <option value="{{ $family->id }}">{{ $family->name_family }}</option>
+                                   <option value="{{ str_pad($family->families_code, 2, 0, STR_PAD_LEFT) }}">{{ str_pad($family->families_code, 2, 0, STR_PAD_LEFT) }} - {{ $family->name_family }}</option>
                                @endforeach
                            </select>
                        </div>
                        <div class="w-2/6">
                            <label for="group_id">Grupo</label>
-                           <select name="group_id" id="group_id" class="w-full">
+                           <select name="group_code" id="group_code" class="w-full">
                                <option value="0">Escolha sua família</option>
                                @foreach($code_group as $group)
-                                   <option value="{{ $group->id }}">{{ $group->name_group }}</option>
+                                   <option value="{{ str_pad($group->group_code, 2, 0, STR_PAD_LEFT) }}">{{ str_pad($group->group_code, 2, 0, STR_PAD_LEFT) }} - {{ $group->name_group }}</option>
                                @endforeach
                            </select>
                        </div>

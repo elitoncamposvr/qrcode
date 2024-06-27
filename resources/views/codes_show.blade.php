@@ -16,16 +16,20 @@
                     <div class="w-full flex justify-between">
                         <div class="w-2/6">
                             <span class="pr-2 font-semibold">Classe:</span>
-                            {{ $code->name_class }}
+                            {{ $code->class_code }}
                         </div>
                         <div class="w-2/6">
                             <span class="pr-2 font-semibold">Família:</span>
-                            {{ $code->name_family }}
+                            {{ $code->families_code }}
                         </div>
                         <div class="w-2/6">
                             <span class="pr-2 font-semibold">Grupo:</span>
-                            {{ $code->name_group }}
+                            {{ $code->group_code }}
                         </div>
+                    </div>
+                    <div class="w-full">
+                        <span class="pr-2 font-semibold">Descrição:</span>
+                        {{ $code->description }}
                     </div>
                 </div>
             </div>
