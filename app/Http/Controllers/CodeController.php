@@ -44,7 +44,7 @@ class CodeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Code $code)
+    public function edit($id)
     {
         return view('codes_edit');
     }
