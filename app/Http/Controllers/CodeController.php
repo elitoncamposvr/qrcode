@@ -78,7 +78,7 @@ class CodeController extends Controller
         //
     }
 
-    public function show(Code $code)
+    public function show($id)
     {
 //        $codes = DB::table('codes')
 //            ->leftJoin('code_classes', 'codes.class_id', '=', 'code_classes.id')
@@ -92,7 +92,7 @@ class CodeController extends Controller
 //        dump($codes[0]->code);
 
         return view('codes_show', [
-            'code' => Code::find($code),
+            'code' => Code::find($id),
         ]);
 
     }

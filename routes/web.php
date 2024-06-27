@@ -25,7 +25,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/codes', [CodeController::class, 'index'])->name('codes.index');
 Route::get('/codes/create', [CodeController::class, 'create'])->name('codes.create');
 Route::post('/codes/store', [CodeController::class, 'store'])->name('codes.store');
-Route::get('/codes/edit/{$id}', [CodeController::class, 'edit'])->name('codes.edit');
+Route::get('/codes/edit/{id}', [CodeController::class, 'edit'])->name('codes.edit');
 Route::put('/codes/update/{id}', [CodeController::class, 'update'])->name('codes.update');
 Route::get('/codes/show/{id}', [CodeController::class, 'show'])->name('codes.show');
 Route::delete('/codes/destroy', [CodeController::class, 'destroy'])->name('codes.destroy');
@@ -45,7 +45,7 @@ Route::get('/codefamily', [CodeFamilyController::class, 'index'])->name('codefam
 Route::get('/codefamily/create', [CodeFamilyController::class, 'create'])->name('codefamily.create');
 Route::post('/codefamily/store', [CodeFamilyController::class, 'store'])->name('codefamily.store');
 Route::get('/codefamily/edit/{id}', [CodeFamilyController::class, 'edit'])->name('codefamily.edit');
-Route::put('/codefamily/updatedit/{id}', [CodeFamilyController::class, 'update'])->name('codefamily.update');
+Route::put('/codefamily/update/{id}', [CodeFamilyController::class, 'update'])->name('codefamily.update');
 Route::delete('/codefamily/destroy', [CodeFamilyController::class, 'destroy'])->name('codefamily.destroy');
 
 Route::get('/codegroup', [CodeGroupController::class, 'index'])->name('codegroup.index');
