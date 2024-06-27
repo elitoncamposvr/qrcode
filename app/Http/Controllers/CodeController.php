@@ -8,6 +8,7 @@ use App\Models\CodeFamily;
 use App\Models\CodeGroup;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use function redirect;
 
@@ -81,7 +82,20 @@ class CodeController extends Controller
      */
     public function show($id)
     {
-        return view('codes_show');
+//        $codes = DB::table('codes')
+//            ->leftJoin('code_classes', 'codes.class_id', '=', 'code_classes.id')
+//            ->leftJoin('code_families', 'codes.family_id', '=', 'code_families.id')
+//            ->leftJoin('code_groups', 'codes.group_id', '=', 'code_groups.id')
+//            ->where('codes.id', '=', $id)
+//            ->get();
+//
+//        return view('codes_show')->with('code', $codes[0]);
+
+//        dump($codes[0]->code);
+
+        return view('codes_show', [
+            'code' => Code::find($id),
+        ]);
     }
 
     /**
