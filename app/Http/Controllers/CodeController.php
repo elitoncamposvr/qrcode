@@ -82,20 +82,20 @@ class CodeController extends Controller
      */
     public function show($id)
     {
-//        $codes = DB::table('codes')
-//            ->leftJoin('code_classes', 'codes.class_id', '=', 'code_classes.id')
-//            ->leftJoin('code_families', 'codes.family_id', '=', 'code_families.id')
-//            ->leftJoin('code_groups', 'codes.group_id', '=', 'code_groups.id')
-//            ->where('codes.id', '=', $id)
-//            ->get();
-//
-//        return view('codes_show')->with('code', $codes[0]);
+        $codes = DB::table('codes')
+            ->leftJoin('code_classes', 'codes.class_code', '=', 'code_classes.class_code')
+            ->leftJoin('code_families', 'codes.families_code', '=', 'code_families.families_code')
+            ->leftJoin('code_groups', 'codes.group_code', '=', 'code_groups.group_code')
+            ->where('codes.id', '=', $id)
+            ->get();
 
-//        dump($codes[0]->code);
+        return view('codes_show')->with('code', $codes[0]);
 
-        return view('codes_show', [
-            'code' => Code::find($id),
-        ]);
+//        dump($codes[0]);
+
+//        return view('codes_show', [
+//            'code' => Code::find($id),
+//        ]);
     }
 
     /**
