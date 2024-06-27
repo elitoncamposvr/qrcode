@@ -3,7 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Code;
+use App\Models\CodeClass;
+use App\Models\CodeFamily;
+use App\Models\CodeGroup;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use function redirect;
 
 class CodeController extends Controller
 {
@@ -22,7 +28,11 @@ class CodeController extends Controller
      */
     public function create()
     {
-        //
+        return view('codes_create', [
+            'code_class' => CodeClass::all(),
+            'code_group' => CodeGroup::all(),
+            'code_family' => CodeFamily::all(),
+        ]);
     }
 
     /**
@@ -30,7 +40,40 @@ class CodeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'class_code' => ['required', 'integer',],
+            'families_code' => ['required', 'integer',],
+            'group_code' => ['required', 'integer',],
+            'description' => ['required', 'string', 'max:255'],
+        ]);
+
+        $code = Code::create([
+            'code' => '0',
+            'designer' => $request->get('designer'),
+            'class_code' => $request->get('class_code'),
+            'families_code' => $request->get('families_code'),
+            'group_code' => $request->get('group_code'),
+            'description' => $request->get('description'),
+        ]);
+//
+        event(new Registered($code));
+
+        $code_all = $request
+                ->get('class_code') . "."
+            . $request->
+            get('families_code') . "."
+            . $request->
+            get('group_code') . "."
+            . $code->id;
+
+        $code_update = Code::find($code->id);
+        $code_update->update([
+            'code' => $code_all,
+        ]);
+
+//        dump($code_all);
+
+        return redirect(route('codes.index', absolute: false));
     }
 
     /**
@@ -60,8 +103,11 @@ class CodeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Code $code)
+    public function destroy(Request $request)
     {
-        //
+        $code = Code::find($request->id);
+        $code->delete();
+
+        return Redirect::to('/codes');
     }
 }
