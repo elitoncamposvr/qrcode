@@ -79,9 +79,9 @@ class CodeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Code $code)
+    public function show($id)
     {
-        //
+        return view('codes_show');
     }
 
     /**
@@ -100,9 +100,6 @@ class CodeController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Request $request)
     {
         $code = Code::find($request->id);
