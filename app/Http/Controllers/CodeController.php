@@ -8,6 +8,7 @@ use App\Models\CodeFamily;
 use App\Models\CodeGroup;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use function redirect;
@@ -30,9 +31,9 @@ class CodeController extends Controller
     public function create()
     {
         return view('codes_create', [
-            'code_class' => CodeClass::all(),
-            'code_group' => CodeGroup::all(),
-            'code_family' => CodeFamily::all(),
+            'code_class' => CodeClass::query()->orderBy('class_code')->get(),
+            'code_group' => CodeGroup::query()->orderBy('group_code')->get(),
+            'code_family' => CodeFamily::query()->orderBy('families_code')->get(),
         ]);
     }
 
@@ -50,29 +51,30 @@ class CodeController extends Controller
 
         $code = Code::create([
             'code' => '0',
-            'designer' => $request->get('designer'),
+            'designer' => Auth::user()->name,
             'class_code' => $request->get('class_code'),
             'families_code' => $request->get('families_code'),
             'group_code' => $request->get('group_code'),
             'description' => $request->get('description'),
         ]);
-//
+
         event(new Registered($code));
 
-        $code_all = $request
-                ->get('class_code') . "."
-            . $request->
-            get('families_code') . "."
-            . $request->
-            get('group_code') . "."
-            . $code->id;
+        $code_id = str_pad($code->id, 4, 0, STR_PAD_LEFT);
+
+        $code_all =
+            $request->get('class_code') .
+            $request->get('families_code') .
+            $request->get('group_code') .
+            $code_id;
 
         $code_update = Code::find($code->id);
+
         $code_update->update([
             'code' => $code_all,
         ]);
 
-//        dump($code_all);
+//        dump($code_id);
 
         return redirect(route('codes.index', absolute: false));
     }

@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Facades\Auth; @endphp
 <x-app-layout>
     <div class="py-5">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -36,7 +37,7 @@
                    </div>
                         <div class="w-full mt-3">
                             <label for="designer">Projetista</label>
-                            <input type="text" name="designer" id="designer" value="Eliton Campos" class="w-full">
+                            <input type="text" name="designer" id="designer" readonly value="{{ Auth::user()->name }}" class="w-full">
                         </div>
                         <div class="w-full mt-3">
                             <label for="description">Descrição</label>
