@@ -43,9 +43,9 @@ class CodeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'class_code' => ['required', 'integer',],
-            'families_code' => ['required', 'integer',],
-            'group_code' => ['required', 'integer',],
+            'class_code' => ['required'],
+            'families_code' => ['required'],
+            'group_code' => ['required'],
             'description' => ['required', 'string', 'max:255'],
         ]);
 
@@ -60,7 +60,17 @@ class CodeController extends Controller
 
         event(new Registered($code));
 
-        $code_id = str_pad($code->id, 4, 0, STR_PAD_LEFT);
+        $sequential_code = Code::query()
+            ->where('class_code', '=', $request->get('class_code'))
+            ->where('group_code', '=', $request->get('group_code'))
+            ->where('families_code', '=', $request->get('families_code'))
+            ->orderBy('sequential_code', 'desc')
+            ->first();
+
+        $sequential = $sequential_code->sequential_code;
+        $sequential++;
+
+        $code_id = str_pad($sequential, 4, 0, STR_PAD_LEFT);
 
         $code_all =
             $request->get('class_code') .
@@ -68,13 +78,13 @@ class CodeController extends Controller
             $request->get('group_code') .
             $code_id;
 
+
         $code_update = Code::find($code->id);
 
         $code_update->update([
             'code' => $code_all,
+            'sequential_code' => $sequential,
         ]);
-
-//        dump($code_id);
 
         return redirect(route('codes.index', absolute: false));
     }

@@ -17,6 +17,7 @@ class Code extends Model
         'class_code',
         'families_code',
         'group_code',
+        'sequential_code',
         'description',
     ];
 }
